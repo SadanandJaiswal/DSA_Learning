@@ -9,11 +9,15 @@ struct Node {
     Node(int value) : data(value), left(nullptr), right(nullptr) {}
 };
 
-vector<int> PostOrder(Node* node){
-    vector<int> ans;
-    stack<Node*> s1;
+// Diameter : longest path between two node, not required to pass via root
+int diameter(Node* root, int &maxi){
+    if(root==NULL) return 0;
 
-    return ans;
+    int l = diameter(root->left,maxi);
+    int r = diameter(root->right,maxi);
+
+    maxi = max(maxi, l + r);
+    return 1 + max(l,r);
 }
 
 int main()
