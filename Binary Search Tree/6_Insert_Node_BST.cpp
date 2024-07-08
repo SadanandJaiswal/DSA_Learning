@@ -9,6 +9,7 @@ struct Node {
     Node(int value) : data(value), left(nullptr), right(nullptr) {}
 };
 
+// Search for NULL in left or right, when null is find in left means val<curr->val and vise versa, insert node at leaf
 Node* insertNodeBST(Node* root, int key){
 
     if(!root) return new Node(key);
