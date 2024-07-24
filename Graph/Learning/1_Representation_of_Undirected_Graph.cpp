@@ -11,7 +11,7 @@ int main(){
     for(int i=0; i<m; i++){
         int u,v;
         cin>>u>>v;
-        // non weighted graph
+        // non weighted graph./
         adj[u][v] = 1;
         adj[v][u] = 1;
 
