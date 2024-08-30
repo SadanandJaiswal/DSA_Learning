@@ -10,9 +10,7 @@ int countPaths(int n, vector<vector<int>>& roads) {
         adj[it[1]].push_back({it[0], it[2]});
     }
 
-    priority_queue<pair<long long,long long>, 
-    vector<pair<long long,long long>>, 
-    greater<pair<long long,long long>>> pq;
+    priority_queue<pair<long long,long long>, vector<pair<long long,long long>>, greater<pair<long long,long long>>> pq;
     // node, dist
 
     vector<long long> dist(n, LLONG_MAX);
@@ -28,7 +26,7 @@ int countPaths(int n, vector<vector<int>>& roads) {
         int node = pq.top().second;
         long long d = pq.top().first;
         pq.pop();
-
+        
         for(auto it: adj[node]){
             int adjNode = it.first;
             long long edW = it.second;
