@@ -28,7 +28,7 @@ class DisjointSet{
             sizeVec[upv] += sizeVec[upu];
         }else{
             parent[upv] = upu;
-            sizeVec[upu] += upv;
+            sizeVec[upu] += sizeVec[upv];
         }
     }
 };
