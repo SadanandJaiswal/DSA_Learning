@@ -1,0 +1,96 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int recursion(int row, int col, vector<vector<int>>& grid){
+    if(row == 0 && col==0){
+        return grid[row][col];
+    }
+
+    if(row<0 || col<0){
+        return INT_MAX;
+    }
+
+    int l = recursion(row-1, col, grid);
+    int u = recursion(row, col-1, grid);
+
+    return min(l, u) + grid[row][col];
+}
+// Time Complexity: O(2^(n*m))
+// Space Complexity: O(n+m)
+
+int memomization(int row, int col, vector<vector<int>>& dp, vector<vector<int>>& grid){
+    if(row == 0 && col==0){
+        return grid[row][col];
+    }
+
+    if(row<0 || col<0){
+        return 100000;
+    }
+
+    if(dp[row][col]!=-1) return dp[row][col];
+
+    int l = memomization(row-1, col, dp, grid);
+    int u = memomization(row, col-1, dp, grid);
+
+    return dp[row][col] = min(l, u) + grid[row][col];
+}
+// Time Complexity: O(n*m)
+// Space Complexity: O(n+m) + O(n*m)
+
+int tabulation(int n, int m, vector<vector<int>>& dp, vector<vector<int>>& grid){
+    dp[0][0] = grid[0][0];
+
+    for(int i=0; i<n; i++){
+        for(int j=0; j<m; j++){
+            if(i==0 && j==0) continue;
+
+            int l = INT_MAX, u = INT_MAX;
+            if(i-1>=0) l = dp[i-1][j];
+            if(j-1>=0) u = dp[i][j-1];
+
+            dp[i][j] = min(l,u) + grid[i][j];
+        }
+    }
+
+    return dp[n-1][m-1];
+}
+// Time Complexity: O(n*m)
+// Space Complexity: O(n*m)
+
+int spaceOptimization(int n, int m, vector<vector<int>> &grid){
+    vector<int> prev(m, INT_MAX), curr(m,0);
+    curr[0] = grid[0][0];
+
+    for(int i=0; i<n; i++){
+        for(int j=0; j<m; j++){
+            if(i==0 && j==0) continue;
+
+            int l = INT_MAX, u = INT_MAX;
+            if(j-1>=0) l = curr[j-1];
+            u = prev[j];
+
+            curr[j] = min(l,u) + grid[i][j];
+        }
+
+        prev = curr;
+    }
+
+    return prev[m-1];
+}
+// Time Complexity: O(n*m)
+// Space Complexity: O(2*m)
+
+int minPathSum(vector<vector<int>>& grid) {
+    int n = grid.size();
+    int m = grid[0].size();
+    vector<vector<int>> dp(n, vector<int>(m, -1));
+
+    // return recursion(n-1, m-1, grid);
+    // return memomization(n-1, m-1, dp, grid);
+    // return tabulation(n, m, dp, grid);
+    return spaceOptimization(n, m, grid);
+}
+
+int main() {
+    return 0;
+}
