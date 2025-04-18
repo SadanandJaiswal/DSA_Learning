@@ -70,6 +70,25 @@ int spaceOptimization(int n, vector<int> &nums){
     return prev[0];
 }
 // Time Complexity: O(n*n)
+// Space Complexity: O(2*n)
+
+int optimalTabulation(int n, vector<int>& nums){
+    vector<int> dp(n, 1);
+
+    int maxi = 1;
+
+    for(int i=0; i<n; i++){
+        for(int previ=0; previ<i; previ++){
+            if(nums[i]>nums[previ]){
+                dp[i] = max(dp[i], 1 + dp[previ]);
+            }
+        }
+        maxi = max(maxi, dp[i]);
+    }
+
+    return maxi;
+}
+// Time Complexity: O(n*n)
 // Space Complexity: O(n)
 
 int lengthOfLIS(vector<int>& nums) {
