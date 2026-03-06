@@ -1,19 +1,26 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-class Solution {
-  public:
+/* steps:
+    1. if operand, add to ans
+    2. if '(', push to stack
+    3. if ')', pop from stack and add to ans until '(' is found, pop '(' as well
+    4. if operator, pop from stack and add to ans until stack is empty or precedence of top of stack is less than precedence of current operator, then push current operator to stack
+    5. after iterating through the string, pop from stack and add to ans until stack is empty
+*/
+
+    int priority(char ch){
+        if(ch=='^') return 3;
+        else if(ch=='*' || ch=='/') return 2;
+        else if(ch=='+' || ch=='-') return 1;
+        else return -1;
+    }
+
     string infixToPostfix(string& s) {
         // code here
         
         stack<char> st;
         string ans;
-        
-        unordered_map<char, int> priority = {
-            {'^',3},
-            {'*',2}, {'/',2},
-            {'+',1}, {'-',1}
-        };
         
         
         for(int i=0; i<s.size(); i++){
@@ -31,7 +38,7 @@ class Solution {
                 st.pop();
             }else{
                 while(!st.empty() && 
-                    (priority[st.top()]>priority[ch] || (priority[st.top()]==priority[ch] && ch!='^'))
+                    (priority(st.top())>priority(ch) || (priority(st.top())==priority(ch) && ch!='^'))
                 ){
                     ans+=st.top();
                     st.pop();
@@ -47,7 +54,7 @@ class Solution {
         
         return ans;
     }
-};
+
 
 
 int main(){}
