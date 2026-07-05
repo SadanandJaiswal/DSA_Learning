@@ -12,16 +12,17 @@ Representing Heap in Array with startign from 1st index : [_, 60, 50, 40, 30, 20
 
 **One based Indexing**:
 Parent : ith index
-Right Child : 2*i th index
-Left Child  : 2*i+1 th index
+Left Child : 2*i th index
+Right Child  : 2*i+1 th index
+Parent Node : i/2
 
 **Zero based Indexing**:
-Parent : ith index
-Right Child : 2*i+1 th index
-Left Child  : 2*i+2 th index
+Left Child : 2*i+1 th index
+Right Child  : 2*i+2 th index
+Parent Node : (i-1)/2
  
 
-### Insertion in heap (map-heap)
+### Insertion in heap (max-heap)
 - insert at last index
 - compare with parent : i/2 index, if parent smaller than current node then swap till satisfy max heap
 - Time Complexity : O(logn)
