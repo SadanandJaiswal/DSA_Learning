@@ -96,4 +96,4 @@ string twosComplement(string s){
 // OR Operator : if any 1 then 1 else 0
 // XOR Operator : if 1 is odd then 1 else 0
 // Left Shift Operator : multiply by 2
-// Right Shift Operator : divide by 2
+// Right Shift Operator : divide by 2 
