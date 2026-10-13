@@ -76,6 +76,7 @@ int countSetBitsBK(int n){
     }
     return count;
 }
+// Time Complexity: O(k), where k is the number of set bits in n.
 
 // Using STL
 int countSetBitsSTL(int n){
